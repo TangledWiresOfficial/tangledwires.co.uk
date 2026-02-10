@@ -17,7 +17,10 @@
     <p>Currently, we're working on Stationary, a mobile app for tracking which UK train stations you've been to.</p>
   </div>
   <div class="flex flex-row justify-center items-center text-3xl">
+    <a href="https://www.facebook.com/tangledwiresofficial/" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
     <a href="https://www.instagram.com/tangledwiresofficial/" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+    <a href="https://www.threads.com/@tangledwiresofficial" aria-label="Threads"><i class="fa-brands fa-threads"></i></a>
+    <a href="https://bsky.app/profile/tangledwires.co.uk" aria-label="Bluesky"><i class="fa-brands fa-bluesky"></i></a>
     <a href="https://github.com/TangledWiresOfficial/" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
   </div>
 </div>
