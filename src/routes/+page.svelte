@@ -23,4 +23,7 @@
     <a href="https://bsky.app/profile/tangledwires.co.uk" aria-label="Bluesky"><i class="fa-brands fa-bluesky"></i></a>
     <a href="https://github.com/TangledWiresOfficial/" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
   </div>
+  <div class="p-10">
+    <p>&copy; 2026 TangledWires Ltd</p>
+  </div>
 </div>
