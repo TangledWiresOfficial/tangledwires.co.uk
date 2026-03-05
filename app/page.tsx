@@ -1,4 +1,3 @@
-import Image from "next/image";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBluesky, faFacebook, faGithub, faInstagram, faThreads} from "@fortawesome/free-brands-svg-icons";
 
@@ -17,7 +16,7 @@ export default function Home() {
         </div>
         <div className="flex flex-col justify-center items-center p-10">
           <p className="text-3xl font-medium">What are we making at the moment?</p>
-          <p>Currently, we're working on Stationary, a mobile app for tracking which UK train stations you've been to.</p>
+          <p>Currently, we&apos;re working on Stationary, a mobile app for tracking which UK train stations you&apos;ve been to.</p>
         </div>
         <div className="flex flex-row justify-center items-center text-3xl">
           <a href="https://www.facebook.com/tangledwiresofficial/" aria-label="Facebook"><FontAwesomeIcon icon={faFacebook} /></a>
