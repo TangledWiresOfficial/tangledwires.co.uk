@@ -33,8 +33,10 @@ export function StationaryPageClient() {
         <p>You can also use Stationary online at <Link href="https://stationary.tangledwires.co.uk/">https://stationary.tangledwires.co.uk/</Link></p>
         <p className="text-2xl"><strong>Stationary Sync</strong></p>
         <p>Optionally, you can backup and sync your journeys across devices using a TangledWires account with Stationary Sync. (Currently only available to beta testers.)</p>
-        {stats && (
+        {stats ? (
           <p>There are currently <strong>{stats.users}</strong> users storing <strong>{stats.journeys}</strong> journeys totalling <strong>{stats.station_visits}</strong> station visits across <strong>{stats.stations_visited}</strong> stations on Stationary Sync!</p>
+        ) : (
+          <p>Loading statistics...</p>
         )}
         <br />
         <p>Stationary and Stationary Sync are open source. You can find the code at <Link href="https://github.com/TangledWiresOfficial/Stationary">https://github.com/TangledWiresOfficial/Stationary</Link> and <Link href="https://github.com/TangledWiresOfficial/stationary-sync">https://github.com/TangledWiresOfficial/stationary-sync</Link></p>
