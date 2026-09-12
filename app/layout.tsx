@@ -50,7 +50,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             </div>
             <hr />
             <div className="text-center">
-              <Link href="/legal/privacy">Privacy Policy</Link>
+              <Link href="/legal">Legal</Link>
               {" "}&middot;{" "}
               <Link href="https://status.tangledwires.co.uk/">Status</Link>
               <br />

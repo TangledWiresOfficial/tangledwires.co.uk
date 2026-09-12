@@ -2,18 +2,18 @@ import {PageHeader} from "@/components/PageHeader";
 import type {Metadata} from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy",
+  title: "tangledwires.co.uk Privacy Policy",
   openGraph: {
-    title: "Privacy Policy",
+    title: "tangledwires.co.uk Privacy Policy",
   },
 };
 
 export default function Privacy() {
   return (
     <>
-      <PageHeader title="Privacy Policy" />
+      <PageHeader title="tangledwires.co.uk Privacy Policy" />
       <div>
-        <p>This website uses Plausible Analytics to collect data about its users. No personal information is collected, and no cookies are set. All data collected is completely anonymised, and is not used to track you across sites.</p>
+        <p>tangledwires.co.uk uses Plausible Analytics to collect data about its users. No personal information is collected, and no cookies are set. All data collected is completely anonymised, and is not used to track you across sites.</p>
         <br />
         <p className="text-xl">Data collected by Plausible Analytics:</p>
         <br />
