@@ -16,6 +16,9 @@ export default function Legal() {
       <div>
         <ol className="list-disc list-inside">
           <li><Link href="/legal/site-privacy">tangledwires.co.uk Privacy Policy</Link></li>
+          <br />
+          <li><Link href="/legal/account-terms">TangledWires Account Terms of Service</Link></li>
+          <li><Link href="/legal/account-privacy">TangledWires Account Privacy Policy</Link></li>
         </ol>
       </div>
     </>

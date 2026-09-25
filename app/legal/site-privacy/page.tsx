@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Privacy() {
+export default function SitePrivacy() {
   return (
     <>
       <PageHeader title="tangledwires.co.uk Privacy Policy" />
