@@ -31,18 +31,20 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <div className="flex flex-col justify-center items-center p-10" style={{ paddingTop: "50px" }}>
           <div className="max-w-3xl w-full mx-auto">
             <div>
-              <Link href="/">
-                <ThemedImage
-                  className="flex justify-center items-center"
-                  style={{ paddingTop: "50px" }}
+              <div className="flex flex-row items-center">
+                <Link href="/">
+                  <ThemedImage
+                    style={{ paddingTop: "50px" }}
 
-                  light="/images/logo_light2.png"
-                  dark="/images/logo_dark2.png"
-                  alt="The word 'TangledWires' next to a computer terminal"
+                    light="/images/logo_light2.png"
+                    dark="/images/logo_dark2.png"
+                    alt="The word 'TangledWires' next to a computer terminal"
 
-                  imgProps={{ width: "350px" }}
-                />
-              </Link>
+                    imgProps={{ width: "50%" }}
+                  />
+                </Link>
+                <Link className="text-right w-full" href="https://auth.tangledwires.co.uk/">Account</Link>
+              </div>
             </div>
             <hr />
             <div className="text-left">
