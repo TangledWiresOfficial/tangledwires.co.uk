@@ -43,7 +43,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                     imgProps={{ width: "50%" }}
                   />
                 </Link>
-                <Link className="text-right w-full" href="https://auth.tangledwires.co.uk/">Account</Link>
+                <Link className="text-right w-full" href="https://auth.tangledwires.co.uk/realms/master/account">Account</Link>
               </div>
             </div>
             <hr />
