@@ -1,5 +1,5 @@
-import type {Metadata} from 'next';
-import {AccountTermsPageClient} from "@/app/legal/account-terms/AccountTermsPageClient";
+import type {Metadata} from "next";
+import {AccountTermsPageClient} from "./AccountTermsPageClient";
 
 export const metadata: Metadata = {
   title: "TangledWires Account Terms of Service",
