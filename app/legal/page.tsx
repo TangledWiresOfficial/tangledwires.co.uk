@@ -20,6 +20,8 @@ export default function Legal() {
           {/*<li><Link href="/legal/account-terms">TangledWires Account Terms of Service</Link></li>*/}
           {/*<li><Link href="/legal/account-privacy">TangledWires Account Privacy Policy</Link></li>*/}
           {/*<li><Link href="/legal/account-deletion">TangledWires Account Deletion</Link></li>*/}
+          <br />
+          <li><Link href="/legal/security-policy">Security Policy</Link></li>
         </ol>
       </div>
     </>

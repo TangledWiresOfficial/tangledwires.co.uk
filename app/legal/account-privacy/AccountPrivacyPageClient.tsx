@@ -1,6 +1,6 @@
 "use client";
 
-import Terms from "./text.mdx";
+import Text from "./text.mdx";
 import {LastUpdated} from "@/components/LastUpdated";
 
 export function AccountPrivacyPageClient() {
@@ -9,7 +9,7 @@ export function AccountPrivacyPageClient() {
       <LastUpdated file="app/legal/account-privacy/text.mdx" />
       <br />
       <div className="prose prose-neutral">
-        <Terms />
+        <Text />
       </div>
     </>
   );
