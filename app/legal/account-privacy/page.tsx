@@ -1,5 +1,6 @@
 import type {Metadata} from "next";
-import {AccountPrivacyPageClient} from "./AccountPrivacyPageClient";
+import Text from "./text.mdx";
+import {LegalDocument} from "../LegalDocument";
 
 export const metadata: Metadata = {
   title: "TangledWires Account Privacy Policy",
@@ -9,5 +10,5 @@ export const metadata: Metadata = {
 }
 
 export default function AccountPrivacyPage() {
-  return <AccountPrivacyPageClient />;
+  return <LegalDocument content={Text} file="app/legal/account-privacy/text.mdx" />;
 }

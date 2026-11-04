@@ -1,5 +1,6 @@
 import type {Metadata} from "next";
-import {AccountTermsPageClient} from "./AccountTermsPageClient";
+import Text from "./text.mdx";
+import {LegalDocument} from "../LegalDocument";
 
 export const metadata: Metadata = {
   title: "TangledWires Account Terms of Service",
@@ -9,5 +10,5 @@ export const metadata: Metadata = {
 }
 
 export default function AccountTermsPage() {
-  return <AccountTermsPageClient />;
+  return <LegalDocument content={Text} file="app/legal/account-terms/text.mdx" />;
 }
