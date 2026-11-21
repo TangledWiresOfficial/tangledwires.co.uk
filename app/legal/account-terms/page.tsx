@@ -10,5 +10,5 @@ export const metadata: Metadata = {
 }
 
 export default function AccountTermsPage() {
-  return <LegalDocument content={Text} file="app/legal/account-terms/text.mdx" />;
+  return <LegalDocument content={<Text />} file="app/legal/account-terms/text.mdx" />;
 }

@@ -1,72 +1,12 @@
-@import "tailwindcss";
-@plugin "@tailwindcss/typography";
-
-@media (prefers-color-scheme: dark) {
-    html {
-        background: black;
-    }
-
-    p, a, i, span, h1, h2, h3, h4, h5, h6, strong, div {
-        color: white;
-    }
-
-    hr {
-        border-color: white;
-    }
-
-    table {
-        border-color: white;
-        color: white;
-    }
-
-    th, td {
-        border-color: white;
-    }
+.show-dark, :where(.pf-v6-theme-dark) .show-light {
+  display: none;
 }
 
-@media (prefers-color-scheme: light) {
-    html {
-        background: white;
-    }
-
-    p, a, i, span, h1, h2, h3, h4, h5, h6, strong, div {
-        color: black;
-    }
-
-    hr {
-        border-color: black;
-    }
-
-    table {
-        border-color: black;
-        color: black;
-    }
-
-    th, td {
-        border-color: black;
-    }
+:where(.pf-v6-theme-dark) .show-dark {
+  display: revert;
 }
 
-a {
-    text-decoration: underline;
+:where(.pf-v6-theme-dark) .show-dark .pf-m-picture {
+  display: inline-flex;
 }
 
-hr {
-    border-top-width: 1px;
-    margin-top: 1em;
-    margin-bottom: 1em;
-}
-
-td {
-    text-align: center;
-}
-
-table {
-    border-collapse: collapse;
-    border: 2px solid;
-}
-
-th, td {
-    border: 1px solid;
-    padding: 8px 10px;
-}

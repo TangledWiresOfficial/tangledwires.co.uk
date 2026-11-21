@@ -1,19 +1,22 @@
-import type {MDXContent} from "mdx/types";
+"use client";
+
 import {LastUpdated} from "@/components/LastUpdated";
+import {Content, PageSection} from "@patternfly/react-core";
+import {JSX} from "react";
 
 export type LegalDocumentProps = {
-  readonly content: MDXContent;
+  readonly content: JSX.Element;
   readonly file: string;
 };
 
-export function LegalDocument({ content: Content, file }: LegalDocumentProps) {
+export function LegalDocument({ content, file }: LegalDocumentProps) {
   return (
-    <>
+    <PageSection>
       <LastUpdated file={file} />
       <br />
-      <div className="prose prose-neutral">
-        <Content />
-      </div>
-    </>
+      <Content>
+        {content}
+      </Content>
+    </PageSection>
   );
 }

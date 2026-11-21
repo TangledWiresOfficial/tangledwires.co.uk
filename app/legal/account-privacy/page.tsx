@@ -10,5 +10,5 @@ export const metadata: Metadata = {
 }
 
 export default function AccountPrivacyPage() {
-  return <LegalDocument content={Text} file="app/legal/account-privacy/text.mdx" />;
+  return <LegalDocument content={<Text />} file="app/legal/account-privacy/text.mdx" />;
 }

@@ -1,6 +1,5 @@
 import {Metadata} from "next";
-import {PageHeader} from "@/components/PageHeader";
-import Link from "next/link";
+import { LegalPageClient } from "./LegalPageClient";
 
 export const metadata: Metadata = {
   title: "Legal",
@@ -10,20 +9,5 @@ export const metadata: Metadata = {
 };
 
 export default function Legal() {
-  return (
-    <>
-      <PageHeader title="Legal" />
-      <div>
-        <ol className="list-disc list-inside">
-          <li><Link href="/legal/site-privacy">tangledwires.co.uk Privacy Policy</Link></li>
-          {/*<br />*/}
-          {/*<li><Link href="/legal/account-terms">TangledWires Account Terms of Service</Link></li>*/}
-          {/*<li><Link href="/legal/account-privacy">TangledWires Account Privacy Policy</Link></li>*/}
-          {/*<li><Link href="/legal/account-deletion">TangledWires Account Deletion</Link></li>*/}
-          <br />
-          <li><Link href="/legal/security-policy">Security Policy</Link></li>
-        </ol>
-      </div>
-    </>
-  );
+  return <LegalPageClient />;
 }

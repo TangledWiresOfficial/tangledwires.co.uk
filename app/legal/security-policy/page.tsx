@@ -10,5 +10,5 @@ export const metadata: Metadata = {
 }
 
 export default function SecurityPolicyPage() {
-  return <LegalDocument content={Text} file="app/legal/security-policy/text.mdx" />;
+  return <LegalDocument content={<Text />} file="app/legal/security-policy/text.mdx" />;
 }

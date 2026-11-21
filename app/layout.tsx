@@ -1,8 +1,7 @@
 import type {Metadata, Viewport} from "next";
 import React from "react";
+import {LayoutClient} from "./LayoutClient";
 import "@fortawesome/fontawesome-svg-core/styles.css";
-import {ThemedImage} from "@/components/ThemedImage";
-import Link from "next/link";
 
 import "./globals.css";
 
@@ -22,49 +21,5 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return (
-    <html lang="en">
-      <head>
-        <script defer data-domain="tangledwires.co.uk" src="https://analytics.tangledwires.co.uk/js/script.js"></script>
-      </head>
-      <body>
-        <div className="flex flex-col justify-center items-center p-10" style={{ paddingTop: "50px" }}>
-          <div className="max-w-3xl w-full mx-auto">
-            <div>
-              <div className="flex flex-row items-center">
-                <Link href="/">
-                  <ThemedImage
-                    style={{ paddingTop: "50px" }}
-
-                    light="/images/logo_light2.png"
-                    dark="/images/logo_dark2.png"
-                    alt="The word 'TangledWires' next to a computer terminal"
-
-                    imgProps={{ width: "50%" }}
-                  />
-                </Link>
-                <Link className="text-right w-full" href="https://auth.tangledwires.co.uk/realms/master/account">Account</Link>
-              </div>
-            </div>
-            <hr />
-            <div className="text-left">
-              {children}
-            </div>
-            <hr />
-            <div className="text-center">
-              <Link href="/legal">Legal</Link>
-              {" "}&middot;{" "}
-              <Link href="https://status.tangledwires.co.uk/">Status</Link>
-              <br />
-              <br />
-              <p>&copy; 2026 TangledWires Ltd</p>
-              <br />
-              <p>Registered in England and Wales &middot; Registered Number: 16997164</p>
-              <p>Registered Office: 20 Wenlock Road, London, England, N1 7GU</p>
-            </div>
-          </div>
-        </div>
-      </body>
-    </html>
-  );
+  return <LayoutClient children={children} />
 }

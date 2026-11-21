@@ -1,27 +1,35 @@
+"use client";
+
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faBluesky, faFacebook, faGithub, faInstagram, faMastodon, faThreads} from "@fortawesome/free-brands-svg-icons";
-import React from "react";
 import Link from "next/link";
+import {Content, Icon, PageSection} from "@patternfly/react-core";
 
 export default function Home() {
   return (
     <>
-      <div className="flex flex-col justify-center items-center">
-        <p className="text-3xl font-medium">Welcome</p>
-        <p>TangledWires is a software team creating... anything we find interesting really.</p>
-      </div>
-      <div className="flex flex-col justify-center items-center p-10">
-        <p className="text-3xl font-medium">What are we making at the moment?</p>
-        <p>Currently, we&apos;re working on <Link href="/projects/stationary">Stationary</Link>, a mobile app for tracking which GB train stations you&apos;ve been to.</p>
-      </div>
-      <div className="flex flex-row justify-center items-center text-3xl">
-        <a href="https://www.facebook.com/tangledwiresofficial/" aria-label="Facebook"><FontAwesomeIcon icon={faFacebook} /></a>
-        <a href="https://www.instagram.com/tangledwiresofficial/" aria-label="Instagram"><FontAwesomeIcon icon={faInstagram} /></a>
-        <a href="https://www.threads.com/@tangledwiresofficial" aria-label="Threads"><FontAwesomeIcon icon={faThreads} /></a>
-        <a href="https://bsky.app/profile/tangledwires.co.uk" aria-label="Bluesky"><FontAwesomeIcon icon={faBluesky} /></a>
-        <a rel="me" href="https://fosstodon.org/@tangledwires" aria-label="Mastodon"><FontAwesomeIcon icon={faMastodon} /></a>
-        <a href="https://github.com/TangledWiresOfficial/" aria-label="GitHub"><FontAwesomeIcon icon={faGithub} /></a>
-      </div>
+      <PageSection>
+        <Content>
+          <h1>Welcome</h1>
+          <p>TangledWires is a software company dedicated to making cool stuff.</p>
+        </Content>
+      </PageSection>
+      <PageSection>
+        <Content>
+          <h1>What are we making at the moment?</h1>
+          <p>Currently, we&apos;re working on <Link href="/projects/stationary">Stationary</Link>, a mobile app for tracking which GB train stations you&apos;ve been to.</p>
+        </Content>
+      </PageSection>
+      <PageSection>
+        <Content>
+          <a href="https://www.facebook.com/tangledwiresofficial/" aria-label="Facebook"><Icon size="xl"><FontAwesomeIcon icon={faFacebook} /></Icon></a>
+          <a href="https://www.instagram.com/tangledwiresofficial/" aria-label="Instagram"><Icon size="xl"><FontAwesomeIcon icon={faInstagram} /></Icon></a>
+          <a href="https://www.threads.com/@tangledwiresofficial" aria-label="Threads"><Icon size="xl"><FontAwesomeIcon icon={faThreads} /></Icon></a>
+          <a href="https://bsky.app/profile/tangledwires.co.uk" aria-label="Bluesky"><Icon size="xl"><FontAwesomeIcon icon={faBluesky} /></Icon></a>
+          <a rel="me" href="https://fosstodon.org/@tangledwires" aria-label="Mastodon"><Icon size="xl"><FontAwesomeIcon icon={faMastodon} /></Icon></a>
+          <a href="https://github.com/TangledWiresOfficial/" aria-label="GitHub"><Icon size="xl"><FontAwesomeIcon icon={faGithub} /></Icon></a>
+        </Content>
+      </PageSection>
     </>
   );
 }

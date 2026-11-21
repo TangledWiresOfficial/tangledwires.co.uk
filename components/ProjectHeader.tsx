@@ -1,5 +1,6 @@
-import React from "react";
+import {Flex, FlexItem} from "@patternfly/react-core";
 import Image, {ImageProps} from "next/image";
+import {PageHeader} from "./PageHeader";
 
 export type ProjectHeaderProps = {
   readonly title: string;
@@ -10,20 +11,16 @@ export type ProjectHeaderProps = {
 
 export function ProjectHeader({ title, description, image, imageAlt }: ProjectHeaderProps) {
   return (
-    <div>
-      <div className="grid grid-cols-2 gap-4 items-center p-2 pb-10">
-        <div>
-          <p className="text-3xl">
-            <strong>{title}</strong>
-          </p>
-          <p>
-            {description}
-          </p>
-        </div>
-        <div>
-          <Image className="float-right" src={image} alt={imageAlt} height="450" />
-        </div>
-      </div>
-    </div>
+    <Flex style={{ alignItems: "center" }}>
+      <FlexItem>
+        <PageHeader title={title} />
+        <p>
+          {description}
+        </p>
+      </FlexItem>
+      <FlexItem>
+        <Image src={image} alt={imageAlt} height="450" />
+      </FlexItem>
+    </Flex>
   );
 }
