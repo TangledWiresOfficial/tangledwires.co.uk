@@ -34,6 +34,11 @@ jobs:
           while true; do
             USERS=$(curl -s -H "Authorization: Bearer $TOKEN" "$KC_URL/admin/realms/$KC_REALM/users?first=$FIRST&max=$BATCH_SIZE")
 
+            if [ "$(echo "$USERS" | jq -r 'type')" != "array" ]; then
+              echo "Keycloak API error while fetching users: $USERS"
+              exit 1
+            fi
+
             COUNT=$(echo "$USERS" | jq 'length')
             if [ "$COUNT" -eq 0 ]; then
               break
@@ -41,7 +46,7 @@ jobs:
 
             echo "$USERS" | jq -c '.[]' | while read -r USER; do
               USER_ID=$(echo "$USER" | jq -r '.id')
-              UPDATED_ACTIONS=$(echo "$USER" | jq -c '.requiredActions + ["TERMS_AND_CONDITIONS"] | unique')
+              UPDATED_ACTIONS=$(echo "$USER" | jq -c '(.requiredActions // []) + ["TERMS_AND_CONDITIONS"] | unique')
 
               curl -s -o /dev/null -X PUT "$KC_URL/admin/realms/$KC_REALM/users/$USER_ID" \
                 -H "Authorization: Bearer $TOKEN" \
