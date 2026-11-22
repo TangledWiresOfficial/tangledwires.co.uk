@@ -1,0 +1,53 @@
+name: Reset Terms Acceptance
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+    paths:
+      - "app/legal/account-terms/text.mdx"
+      - "app/legal/account-privacy/text.mdx"
+
+jobs:
+  reset-terms:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Force Terms Re-acceptance for All Users
+        env:
+          KC_URL: ${{ secrets.KEYCLOAK_URL }}
+          KC_REALM: ${{ secrets.KEYCLOAK_REALM }}
+          CLIENT_ID: ${{ secrets.KEYCLOAK_CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.KEYCLOAK_CLIENT_SECRET }}
+        run: |
+          TOKEN=$(curl -s -X POST "$KC_URL/realms/$KC_REALM/protocol/openid-connect/token" \
+            -d "grant_type=client_credentials" \
+            -d "client_id=$CLIENT_ID" \
+            -d "client_secret=$CLIENT_SECRET" | jq -r '.access_token')
+
+          if [ "$TOKEN" == "null" ] || [ -z "$TOKEN" ]; then
+            echo "Failed to authenticate with Keycloak"
+            exit 1
+          fi
+
+          FIRST=0
+          BATCH_SIZE=100
+          while true; do
+            USERS=$(curl -s -H "Authorization: Bearer $TOKEN" "$KC_URL/admin/realms/$KC_REALM/users?first=$FIRST&max=$BATCH_SIZE")
+
+            COUNT=$(echo "$USERS" | jq 'length')
+            if [ "$COUNT" -eq 0 ]; then
+              break
+            fi
+
+            echo "$USERS" | jq -c '.[]' | while read -r USER; do
+              USER_ID=$(echo "$USER" | jq -r '.id')
+              UPDATED_ACTIONS=$(echo "$USER" | jq -c '.requiredActions + ["TERMS_AND_CONDITIONS"] | unique')
+
+              curl -s -o /dev/null -X PUT "$KC_URL/admin/realms/$KC_REALM/users/$USER_ID" \
+                -H "Authorization: Bearer $TOKEN" \
+                -H "Content-Type: application/json" \
+                -d "{\"requiredActions\": $UPDATED_ACTIONS}"
+            done
+
+            FIRST=$((FIRST + BATCH_SIZE))
+          done
