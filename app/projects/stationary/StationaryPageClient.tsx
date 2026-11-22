@@ -3,16 +3,11 @@
 import {ProjectHeader} from "@/components/ProjectHeader";
 import Link from "next/link";
 import mobileScreenshot from "./mobile_screenshot.png";
-import {useEffect, useState} from "react";
-import axios from "axios";
-import { Content, PageSection, Skeleton, Title } from "@patternfly/react-core";
+import {Content, PageSection, Skeleton, Title} from "@patternfly/react-core";
+import {useRemoteData} from "@/hooks/useRemoteData";
 
 export function StationaryPageClient() {
-  const [stats, setStats] = useState<{ users: number, journeys: number, station_visits: number, stations_visited: number }>();
-
-  useEffect(() => {
-    axios.get("https://stationary-sync.tangledwires.co.uk/api/v1/stats").then((r) => setStats(r.data));
-  }, []);
+  const stats = useRemoteData<{ users: number, journeys: number, station_visits: number, stations_visited: number }>("https://stationary-sync.tangledwires.co.uk/api/v1/stats");
 
   return (
     <PageSection>

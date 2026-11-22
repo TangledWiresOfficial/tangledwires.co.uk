@@ -1,13 +1,17 @@
 "use client";
 
 import {useTheme} from "@/hooks/useTheme";
-import {Brand, Masthead, MastheadBrand, MastheadContent, MastheadLogo, Page, PageFooter, PageSection, Toolbar, ToolbarContent, ToolbarGroup, ToolbarItem} from "@patternfly/react-core";
+import {Alert, Brand, Flex, FlexItem, Masthead, MastheadBrand, MastheadContent, MastheadLogo, Page, PageFooter, PageSection, Toolbar, ToolbarContent, ToolbarGroup, ToolbarItem} from "@patternfly/react-core";
 import Link from "next/link";
+import {useRemoteData} from "@/hooks/useRemoteData";
 
 import "@patternfly/react-core/dist/styles/base.css";
 
 export function LayoutClient({ children }: Readonly<{ children: React.ReactNode }>) {
   useTheme();
+
+  // There's more data in the response, but this is all we actually use
+  const statusData = useRemoteData<{ data: { attributes: { aggregate_state: string } } }>("https://status.tangledwires.co.uk/index.json");
 
   const masthead = (
     <Masthead>
@@ -58,11 +62,25 @@ export function LayoutClient({ children }: Readonly<{ children: React.ReactNode 
         <script defer data-domain="tangledwires.co.uk" src="https://analytics.tangledwires.co.uk/js/script.js"></script>
       </head>
       <body>
-        <Page masthead={masthead}>
-          {children}
-          <hr />
-          {footer}
-        </Page>
+        <Flex
+          direction={{ default: "column" }}
+          flexWrap={{ default: "nowrap" }}
+          spaceItems={{ default: "spaceItemsNone" }}
+          style={{ height: "100%" }}
+        >
+          {statusData && statusData.data.attributes.aggregate_state !== "operational" && (
+            <FlexItem>
+              <Alert isInline isPlain variant="warning" title={<p>Some of our services are currently experiencing outages. Please visit <a href="https://status.tangledwires.co.uk/">https://status.tangledwires.co.uk/</a> to find out more.</p>} />
+            </FlexItem>
+          )}
+          <FlexItem grow={{ default: "grow" }} style={{ minHeight: 0 }}>
+            <Page masthead={masthead}>
+              {children}
+              <hr />
+              {footer}
+            </Page>
+          </FlexItem>
+        </Flex>
       </body>
     </html>
   );
