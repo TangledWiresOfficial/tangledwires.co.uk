@@ -11,7 +11,7 @@ export function useLastUpdated(file: string) {
       }
     }).then((response) => {
       const commit = response.data[0];
-      const lastUpdatedDate = new Date(commit.commit.committer.date);
+      const lastUpdatedDate = new Date(commit?.commit?.committer?.date);
       setLastUpdated(lastUpdatedDate);
     }).catch((error) => {
       console.error("Error fetching last updated date:", error);

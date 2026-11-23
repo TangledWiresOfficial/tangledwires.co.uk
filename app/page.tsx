@@ -11,7 +11,7 @@ export default function Home() {
       <PageSection>
         <Content>
           <h1>Welcome</h1>
-          <p>TangledWires is a software company dedicated to making cool stuff.</p>
+          <p>TangledWires is a software company that makes cool stuff.</p>
         </Content>
       </PageSection>
       <PageSection>

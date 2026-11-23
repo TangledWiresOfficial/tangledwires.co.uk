@@ -16,6 +16,9 @@ export function LegalPageClient() {
           <li><Link href="/legal/account-privacy">TangledWires Account Privacy Policy</Link></li>
           <li><Link href="/legal/account-deletion">TangledWires Account Deletion</Link></li>
           <br />
+          <li><Link href="/legal/stationary-sync-terms">Stationary Sync Terms of Service</Link></li>
+          <li><Link href="/legal/stationary-sync-privacy">Stationary Sync Privacy Policy</Link></li>
+          <br />
           <li><Link href="/legal/security-policy">Security Policy</Link></li>
         </ul>
       </div>

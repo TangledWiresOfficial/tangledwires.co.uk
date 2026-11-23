@@ -1,6 +1,6 @@
 "use client";
 
-import {useLastUpdated} from "@/app/legal/utils";
+import {useLastUpdated} from "@/hooks/useLastUpdated";
 
 export function LastUpdated({ file }: { readonly file: string }) {
   const lastUpdated = useLastUpdated(file);
