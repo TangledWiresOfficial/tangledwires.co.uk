@@ -1,0 +1,66 @@
+name: Reset Stationary Sync Terms Consent
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "legal/stationary-sync-terms.md"
+      - "legal/stationary-sync-privacy.md"
+
+jobs:
+  reset-client-consent:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Revoke Stationary Sync Client Consent for All Users
+        env:
+          KC_URL: ${{ secrets.KEYCLOAK_URL }}
+          KC_REALM: ${{ secrets.KEYCLOAK_REALM }}
+          CLIENT_ID: ${{ secrets.KEYCLOAK_CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.KEYCLOAK_CLIENT_SECRET }}
+          TARGET_CLIENT_ID: "stationary-sync"
+        run: |
+          TOKEN_RESPONSE=$(curl -s -X POST "$KC_URL/realms/$KC_REALM/protocol/openid-connect/token" \
+            -d "grant_type=client_credentials" \
+            -d "client_id=$CLIENT_ID" \
+            -d "client_secret=$CLIENT_SECRET")
+
+          TOKEN=$(echo "$TOKEN_RESPONSE" | jq -r ".access_token")
+
+          if [ "$TOKEN" == "null" ] || [ -z "$TOKEN" ]; then
+            echo "Failed to authenticate with Keycloak: $TOKEN_RESPONSE"
+            exit 1
+          fi
+
+          FIRST=0
+          BATCH_SIZE=100
+          while true; do
+            USERS=$(curl -s -H "Authorization: Bearer $TOKEN" \
+              "$KC_URL/admin/realms/$KC_REALM/users?first=$FIRST&max=$BATCH_SIZE")
+
+            if [ "$(echo "$USERS" | jq -r "type")" != "array" ]; then
+              echo "Keycloak API error while fetching users: $USERS"
+              exit 1
+            fi
+
+            COUNT=$(echo "$USERS" | jq "length")
+            if [ "$COUNT" -eq 0 ]; then
+              break
+            fi
+
+            echo "$USERS" | jq -c ".[]" | while read -r USER; do
+              USER_ID=$(echo "$USER" | jq -r ".id")
+
+              HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+                -X DELETE "$KC_URL/admin/realms/$KC_REALM/users/$USER_ID/consents/$TARGET_CLIENT_ID" \
+                -H "Authorization: Bearer $TOKEN")
+
+              # 204 = Consent revoked, 404 = User never consented to this client (safe to ignore)
+              if [ "$HTTP_STATUS" != "204" ] && [ "$HTTP_STATUS" != "404" ]; then
+                echo "Unexpected HTTP status $HTTP_STATUS revoking consent for user $USER_ID"
+                exit 1
+              fi
+            done
+
+            FIRST=$((FIRST + BATCH_SIZE))
+          done
